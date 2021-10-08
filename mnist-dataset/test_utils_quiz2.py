@@ -4,6 +4,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn import datasets,svm,metrics
 from sklearn.model_selection import train_test_split
+import random
+import math
 def preprocessing(images,rescale_factor):
     resized_images = []
     for img in images:
@@ -37,7 +39,7 @@ def test_create_split():
     train_size = 0.7
     test_size = 0.2
     val_size = 0.1
-    train_X,test_X,train_Y,test_Y = train_test_split(data,Y,target,test_size=test_size+val_size,shuffle=False)
+    train_X,test_X,train_Y,test_Y = train_test_split(data,Y,test_size=test_size+val_size,shuffle=False)
     val_X,test_X,val_Y,test_Y = train_test_split(test_X,test_Y,test_size =(test_size/(test_size+val_size)),shuffle = False)
     print(len(train_X))
     print(len(test_X))
@@ -46,9 +48,9 @@ def test_create_split():
     train_split = len(train_X)
     test_split = len(test_X)
     val_split = len(val_X)
-    assert train_size == int(0.70*length)
-    assert test_size == ceil(0.20*length)
-    assert val_size == ceil(0.10*length)
+    assert train_split == int(0.70*length)
+    assert test_split == math.ceil(0.20*length)
+    assert val_split == math.ceil(0.10*length)
     assert(train_split+val_split+test_split) == length
 
 
